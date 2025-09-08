@@ -1,58 +1,43 @@
-import type { MetadataRoute } from "next"
-import { getAcompanhantes } from "@/lib/data"
+import type { MetadataRoute } from "next";
+import { getAcompanhantes } from "@/lib/data";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://mygirls.com.br"
-  const locales = ["pt", "en", "es"]
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://mygirls.com.br";
 
-  // Base pages for each locale
-  const basePages = ["", "/catalogo", "/contato"]
+  const sitemapEntries: MetadataRoute.Sitemap = [
+    // Home page
+    {
+      url: baseUrl,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 1,
+    },
+    // Catalog page
+    {
+      url: `${baseUrl}/catalogo`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    // Contact page
+    {
+      url: `${baseUrl}/contato`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+  ];
 
-  // Generate sitemap entries for each locale and page
-  const sitemapEntries: MetadataRoute.Sitemap = []
+  // Add individual escort profile pages
+  const acompanhantes = getAcompanhantes();
+  acompanhantes.forEach((acompanhante) => {
+    sitemapEntries.push({
+      url: `${baseUrl}/acompanhante/${acompanhante.id}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.6,
+    });
+  });
 
-  locales.forEach((locale) => {
-    basePages.forEach((page) => {
-      const url = locale === "pt" ? `${baseUrl}${page}` : `${baseUrl}/${locale}${page}`
-
-      sitemapEntries.push({
-        url,
-        lastModified: new Date(),
-        changeFrequency: page === "" ? "weekly" : "monthly",
-        priority: page === "" ? 1 : 0.8,
-        alternates: {
-          languages: {
-            pt: locale === "pt" ? `${baseUrl}${page}` : `${baseUrl}${page}`,
-            en: locale === "pt" ? `${baseUrl}/en${page}` : `${baseUrl}/en${page}`,
-            es: locale === "pt" ? `${baseUrl}/es${page}` : `${baseUrl}/es${page}`,
-          },
-        },
-      })
-    })
-
-    // Add individual escort profile pages
-    const acompanhantes = getAcompanhantes(locale)
-    acompanhantes.forEach((acompanhante) => {
-      const profileUrl =
-        locale === "pt"
-          ? `${baseUrl}/acompanhante/${acompanhante.id}`
-          : `${baseUrl}/${locale}/acompanhante/${acompanhante.id}`
-
-      sitemapEntries.push({
-        url: profileUrl,
-        lastModified: new Date(),
-        changeFrequency: "monthly",
-        priority: 0.6,
-        alternates: {
-          languages: {
-            pt: `${baseUrl}/acompanhante/${acompanhante.id}`,
-            en: `${baseUrl}/en/acompanhante/${acompanhante.id}`,
-            es: `${baseUrl}/es/acompanhante/${acompanhante.id}`,
-          },
-        },
-      })
-    })
-  })
-
-  return sitemapEntries
+  return sitemapEntries;
 }

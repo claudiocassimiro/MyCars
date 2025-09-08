@@ -4,105 +4,79 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import { Analytics } from "@vercel/analytics/next";
 import { Suspense } from "react";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
 import "./globals.css";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { locale: string };
-}): Promise<Metadata> {
-  const locale = params?.locale || "pt";
-
-  const titles = {
-    pt: "MyGirls - Acompanhantes Exclusivas em Porto de Galinhas",
-    en: "MyGirls - Exclusive Escorts in Porto de Galinhas",
-    es: "MyGirls - Escorts Exclusivas en Porto de Galinhas",
-  };
-
-  const descriptions = {
-    pt: "Acompanhantes elegantes e sofisticadas para eventos, jantares e ocasiões especiais em Porto de Galinhas, PE. Discrição e qualidade garantidas.",
-    en: "Elegant and sophisticated escorts for events, dinners and special occasions in Porto de Galinhas, PE. Discretion and quality guaranteed.",
-    es: "Escorts elegantes y sofisticadas para eventos, cenas y ocasiones especiales en Porto de Galinhas, PE. Discreción y calidad garantizadas.",
-  };
-
-  return {
-    title: {
-      default: titles[locale as keyof typeof titles] || titles.pt,
-      template: "%s | MyGirls",
-    },
+export const metadata: Metadata = {
+  title: {
+    default: "MyGirls - Acompanhantes Exclusivas em Porto de Galinhas",
+    template: "%s | MyGirls",
+  },
+  description:
+    "Acompanhantes elegantes e sofisticadas para eventos, jantares e ocasiões especiais em Porto de Galinhas, PE. Discrição e qualidade garantidas.",
+  keywords: [
+    "acompanhantes Porto de Galinhas",
+    "eventos sociais Pernambuco",
+    "jantares executivos",
+    "acompanhamento exclusivo",
+    "Porto de Galinhas PE",
+    "eventos corporativos",
+    "acompanhantes elegantes",
+    "serviços discretos",
+  ],
+  authors: [{ name: "MyGirls", url: "https://mygirls.com.br" }],
+  creator: "MyGirls",
+  publisher: "MyGirls",
+  generator: "v0.app",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_BASE_URL || "https://mygirls.com.br"
+  ),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: "/",
+    title: "MyGirls - Acompanhantes Exclusivas em Porto de Galinhas",
     description:
-      descriptions[locale as keyof typeof descriptions] || descriptions.pt,
-    keywords: [
-      "acompanhantes Porto de Galinhas",
-      "eventos sociais Pernambuco",
-      "jantares executivos",
-      "acompanhamento exclusivo",
-      "Porto de Galinhas PE",
-      "eventos corporativos",
-      "acompanhantes elegantes",
-      "serviços discretos",
-    ],
-    authors: [{ name: "MyGirls", url: "https://mygirls.com.br" }],
-    creator: "MyGirls",
-    publisher: "MyGirls",
-    formatDetection: {
-      email: false,
-      address: false,
-      telephone: false,
-    },
-    metadataBase: new URL(
-      process.env.NEXT_PUBLIC_BASE_URL || "https://mygirls.com.br"
-    ),
-    alternates: {
-      canonical: "/",
-      languages: {
-        pt: "/pt",
-        en: "/en",
-        es: "/es",
+      "Acompanhantes elegantes e sofisticadas para eventos, jantares e ocasiões especiais em Porto de Galinhas, PE. Discrição e qualidade garantidas.",
+    siteName: "MyGirls",
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "MyGirls - Acompanhantes em Porto de Galinhas",
       },
-    },
-    openGraph: {
-      type: "website",
-      locale: locale === "pt" ? "pt_BR" : locale === "es" ? "es_ES" : "en_US",
-      url: "/",
-      title: titles[locale as keyof typeof titles] || titles.pt,
-      description:
-        descriptions[locale as keyof typeof descriptions] || descriptions.pt,
-      siteName: "MyGirls",
-      images: [
-        {
-          url: "/og-image.jpg",
-          width: 1200,
-          height: 630,
-          alt: "MyGirls - Acompanhantes em Porto de Galinhas",
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: titles[locale as keyof typeof titles] || titles.pt,
-      description:
-        descriptions[locale as keyof typeof descriptions] || descriptions.pt,
-      images: ["/og-image.jpg"],
-    },
-    robots: {
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "MyGirls - Acompanhantes Exclusivas em Porto de Galinhas",
+    description:
+      "Acompanhantes elegantes e sofisticadas para eventos, jantares e ocasiões especiais em Porto de Galinhas, PE. Discrição e qualidade garantidas.",
+    images: ["/og-image.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
       index: true,
       follow: true,
-      googleBot: {
-        index: true,
-        follow: true,
-        "max-video-preview": -1,
-        "max-image-preview": "large",
-        "max-snippet": -1,
-      },
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
-    verification: {
-      google: process.env.GOOGLE_SITE_VERIFICATION,
-    },
-  };
-}
+  },
+  verification: {
+    google: process.env.GOOGLE_SITE_VERIFICATION,
+  },
+};
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -115,59 +89,38 @@ export const viewport: Viewport = {
   ],
 };
 
-function getOrganizationJsonLd(locale: string) {
-  const descriptions = {
-    pt: "Acompanhantes elegantes para eventos sociais em Porto de Galinhas",
-    en: "Elegant escorts for social events in Porto de Galinhas",
-    es: "Escorts elegantes para eventos sociales en Porto de Galinhas",
-  };
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "MyGirls",
+  description:
+    "Acompanhantes elegantes para eventos sociais em Porto de Galinhas",
+  url: process.env.NEXT_PUBLIC_BASE_URL || "https://mygirls.com.br",
+  logo: `${
+    process.env.NEXT_PUBLIC_BASE_URL || "https://mygirls.com.br"
+  }/logo.png`,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Porto de Galinhas",
+    addressRegion: "PE",
+    addressCountry: "BR",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    telephone: "+55-81-99999-0000",
+    contactType: "customer service",
+    availableLanguage: "Portuguese",
+  },
+  sameAs: [],
+};
 
-  const languages = {
-    pt: "Portuguese",
-    en: "English",
-    es: "Spanish",
-  };
-
-  return {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "MyGirls",
-    description:
-      descriptions[locale as keyof typeof descriptions] || descriptions.pt,
-    url: process.env.NEXT_PUBLIC_BASE_URL || "https://mygirls.com.br",
-    logo: `${
-      process.env.NEXT_PUBLIC_BASE_URL || "https://mygirls.com.br"
-    }/logo.png`,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Porto de Galinhas",
-      addressRegion: "PE",
-      addressCountry: "BR",
-    },
-    contactPoint: {
-      "@type": "ContactPoint",
-      telephone: "+55-81-99999-0000",
-      contactType: "customer service",
-      availableLanguage:
-        languages[locale as keyof typeof languages] || languages.pt,
-    },
-    sameAs: [],
-  };
-}
-
-export default async function RootLayout({
+export default function RootLayout({
   children,
-  params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { locale: string };
 }>) {
-  const locale = params?.locale || "pt";
-  const messages = await getMessages();
-  const organizationJsonLd = getOrganizationJsonLd(locale);
-
   return (
-    <html lang={locale === "pt" ? "pt-BR" : locale}>
+    <html lang="pt-BR">
       <head>
         <script
           type="application/ld+json"
@@ -185,15 +138,9 @@ export default async function RootLayout({
       <body
         className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}
       >
-        <NextIntlClientProvider messages={messages}>
-          <Suspense fallback={null}>{children}</Suspense>
-        </NextIntlClientProvider>
+        <Suspense fallback={null}>{children}</Suspense>
         <Analytics />
       </body>
     </html>
   );
 }
-
-export const metadata = {
-      generator: 'v0.app'
-    };

@@ -1,15 +1,12 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useState } from "react"
-import { Menu, X } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { useTranslations } from "next-intl"
-import { LanguageSelector } from "@/components/language-selector"
+import Link from "next/link";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function Header() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const t = useTranslations("common")
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <header className="bg-black backdrop-blur-sm border-b border-red-900/20 sticky top-0 z-50">
@@ -25,22 +22,33 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8" role="navigation" aria-label="Navegação principal">
-            <Link href="/" className="text-white hover:text-red-400 transition-colors">
-              {t("home")}
+          <nav
+            className="hidden md:flex items-center space-x-8"
+            role="navigation"
+            aria-label="Navegação principal"
+          >
+            <Link
+              href="/"
+              className="text-white hover:text-red-400 transition-colors"
+            >
+              Início
             </Link>
-            <Link href="/catalogo" className="text-white hover:text-red-400 transition-colors">
-              {t("catalog")}
+            <Link
+              href="/catalogo"
+              className="text-white hover:text-red-400 transition-colors"
+            >
+              Catálogo
             </Link>
-            <Link href="/contato" className="text-white hover:text-red-400 transition-colors">
-              {t("contact")}
+            <Link
+              href="/contato"
+              className="text-white hover:text-red-400 transition-colors"
+            >
+              Contato
             </Link>
-            <LanguageSelector />
           </nav>
 
-          {/* Mobile Menu Button and Language Selector */}
+          {/* Mobile Menu Button */}
           <div className="flex items-center gap-2 md:hidden">
-            <LanguageSelector />
             <Button
               variant="ghost"
               size="sm"
@@ -69,26 +77,26 @@ export function Header() {
                 className="text-white hover:text-red-400 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                {t("home")}
+                Início
               </Link>
               <Link
                 href="/catalogo"
                 className="text-white hover:text-red-400 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                {t("catalog")}
+                Catálogo
               </Link>
               <Link
                 href="/contato"
                 className="text-white hover:text-red-400 transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
-                {t("contact")}
+                Contato
               </Link>
             </div>
           </nav>
         )}
       </div>
     </header>
-  )
+  );
 }

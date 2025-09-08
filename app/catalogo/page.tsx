@@ -1,25 +1,21 @@
-import { getTranslations } from "next-intl/server"
-import CatalogoClientPage from "./CatalogoClientPage"
+import CatalogoClientPage from "./CatalogoClientPage";
 
-export async function generateMetadata({ params }: { params: { locale: string } }) {
-  const locale = params?.locale || "pt"
-  const t = await getTranslations({ locale, namespace: "seo" })
+export const metadata = {
+  title: "Catálogo de Acompanhantes - MyGirls",
+  description:
+    "Explore nosso catálogo completo de acompanhantes elegantes e sofisticadas em Porto de Galinhas. Filtros por idade, características e disponibilidade.",
+  keywords:
+    "catálogo acompanhantes, Porto de Galinhas, filtrar acompanhantes, buscar acompanhantes PE",
+  openGraph: {
+    title: "Catálogo de Acompanhantes - MyGirls",
+    description:
+      "Explore nosso catálogo completo de acompanhantes elegantes e sofisticadas em Porto de Galinhas. Filtros por idade, características e disponibilidade.",
+  },
+  alternates: {
+    canonical: "/catalogo",
+  },
+};
 
-  return {
-    title: t("catalogTitle"),
-    description: t("catalogDescription"),
-    keywords: "catálogo acompanhantes, Porto de Galinhas, filtrar acompanhantes, buscar acompanhantes PE",
-    openGraph: {
-      title: t("catalogTitle"),
-      description: t("catalogDescription"),
-    },
-    alternates: {
-      canonical: "/catalogo",
-    },
-  }
-}
-
-export default function CatalogoPage({ params }: { params: { locale: string } }) {
-  const locale = params?.locale || "pt"
-  return <CatalogoClientPage locale={locale} />
+export default function CatalogoPage() {
+  return <CatalogoClientPage />;
 }
