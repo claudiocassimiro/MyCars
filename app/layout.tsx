@@ -1,39 +1,34 @@
-import type React from "react";
-import type { Viewport } from "next";
-import { GeistSans } from "geist/font/sans";
-import { GeistMono } from "geist/font/mono";
-import { Analytics } from "@vercel/analytics/next";
-import { Suspense } from "react";
-import { NextIntlClientProvider } from "next-intl";
-import { getMessages } from "next-intl/server";
-import "./globals.css";
+import type React from "react"
+import type { Metadata, Viewport } from "next"
+import { GeistSans } from "geist/font/sans"
+import { GeistMono } from "geist/font/mono"
+import { Analytics } from "@vercel/analytics/next"
+import { Suspense } from "react"
+import { NextIntlClientProvider } from "next-intl"
+import { getMessages } from "next-intl/server"
+import "./globals.css"
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { locale: string };
-}) {
-  const locale = params?.locale || "pt";
+export async function generateMetadata({ params }: { params: { locale: string } }): Promise<Metadata> {
+  const locale = params?.locale || "pt"
 
   const titles = {
     pt: "MyGirls - Acompanhantes Exclusivas em Porto de Galinhas",
     en: "MyGirls - Exclusive Escorts in Porto de Galinhas",
     es: "MyGirls - Escorts Exclusivas en Porto de Galinhas",
-  };
+  }
 
   const descriptions = {
     pt: "Acompanhantes elegantes e sofisticadas para eventos, jantares e ocasiões especiais em Porto de Galinhas, PE. Discrição e qualidade garantidas.",
     en: "Elegant and sophisticated escorts for events, dinners and special occasions in Porto de Galinhas, PE. Discretion and quality guaranteed.",
     es: "Escorts elegantes y sofisticadas para eventos, cenas y ocasiones especiales en Porto de Galinhas, PE. Discreción y calidad garantizadas.",
-  };
+  }
 
   return {
     title: {
       default: titles[locale as keyof typeof titles] || titles.pt,
       template: "%s | MyGirls",
     },
-    description:
-      descriptions[locale as keyof typeof descriptions] || descriptions.pt,
+    description: descriptions[locale as keyof typeof descriptions] || descriptions.pt,
     keywords: [
       "acompanhantes Porto de Galinhas",
       "eventos sociais Pernambuco",
@@ -52,9 +47,7 @@ export async function generateMetadata({
       address: false,
       telephone: false,
     },
-    metadataBase: new URL(
-      process.env.NEXT_PUBLIC_BASE_URL || "https://mygirls.com.br"
-    ),
+    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || "https://mygirls.com.br"),
     alternates: {
       canonical: "/",
       languages: {
@@ -68,8 +61,7 @@ export async function generateMetadata({
       locale: locale === "pt" ? "pt_BR" : locale === "es" ? "es_ES" : "en_US",
       url: "/",
       title: titles[locale as keyof typeof titles] || titles.pt,
-      description:
-        descriptions[locale as keyof typeof descriptions] || descriptions.pt,
+      description: descriptions[locale as keyof typeof descriptions] || descriptions.pt,
       siteName: "MyGirls",
       images: [
         {
@@ -83,8 +75,7 @@ export async function generateMetadata({
     twitter: {
       card: "summary_large_image",
       title: titles[locale as keyof typeof titles] || titles.pt,
-      description:
-        descriptions[locale as keyof typeof descriptions] || descriptions.pt,
+      description: descriptions[locale as keyof typeof descriptions] || descriptions.pt,
       images: ["/og-image.jpg"],
     },
     robots: {
@@ -101,7 +92,7 @@ export async function generateMetadata({
     verification: {
       google: process.env.GOOGLE_SITE_VERIFICATION,
     },
-  };
+  }
 }
 
 export const viewport: Viewport = {
@@ -113,31 +104,28 @@ export const viewport: Viewport = {
     { media: "(prefers-color-scheme: light)", color: "#dc2626" },
     { media: "(prefers-color-scheme: dark)", color: "#dc2626" },
   ],
-};
+}
 
 function getOrganizationJsonLd(locale: string) {
   const descriptions = {
     pt: "Acompanhantes elegantes para eventos sociais em Porto de Galinhas",
     en: "Elegant escorts for social events in Porto de Galinhas",
     es: "Escorts elegantes para eventos sociales en Porto de Galinhas",
-  };
+  }
 
   const languages = {
     pt: "Portuguese",
     en: "English",
     es: "Spanish",
-  };
+  }
 
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "MyGirls",
-    description:
-      descriptions[locale as keyof typeof descriptions] || descriptions.pt,
+    description: descriptions[locale as keyof typeof descriptions] || descriptions.pt,
     url: process.env.NEXT_PUBLIC_BASE_URL || "https://mygirls.com.br",
-    logo: `${
-      process.env.NEXT_PUBLIC_BASE_URL || "https://mygirls.com.br"
-    }/logo.png`,
+    logo: `${process.env.NEXT_PUBLIC_BASE_URL || "https://mygirls.com.br"}/logo.png`,
     address: {
       "@type": "PostalAddress",
       addressLocality: "Porto de Galinhas",
@@ -148,48 +136,40 @@ function getOrganizationJsonLd(locale: string) {
       "@type": "ContactPoint",
       telephone: "+55-81-99999-0000",
       contactType: "customer service",
-      availableLanguage:
-        languages[locale as keyof typeof languages] || languages.pt,
+      availableLanguage: languages[locale as keyof typeof languages] || languages.pt,
     },
     sameAs: [],
-  };
+  }
 }
 
 export default async function RootLayout({
   children,
   params,
 }: Readonly<{
-  children: React.ReactNode;
-  params: { locale: string };
+  children: React.ReactNode
+  params: { locale: string }
 }>) {
-  const locale = params?.locale || "pt";
-  const messages = await getMessages();
-  const organizationJsonLd = getOrganizationJsonLd(locale);
+  const locale = params?.locale || "pt"
+  const messages = await getMessages()
+  const organizationJsonLd = getOrganizationJsonLd(locale)
 
   return (
     <html lang={locale === "pt" ? "pt-BR" : locale}>
       <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationJsonLd),
-          }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
-      <body
-        className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}
-      >
+      <body className={`font-sans ${GeistSans.variable} ${GeistMono.variable} antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <Suspense fallback={null}>{children}</Suspense>
         </NextIntlClientProvider>
         <Analytics />
       </body>
     </html>
-  );
+  )
 }
+
+export const metadata = {
+      generator: 'v0.app'
+    };
