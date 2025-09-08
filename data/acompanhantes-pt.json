@@ -1,0 +1,53 @@
+[
+  {
+    "id": "ana-25anos",
+    "nome": "Ana",
+    "idade": 25,
+    "foto": "/images/ana.jpg",
+    "descricao": "Morena elegante e simpática. Disponível para eventos sociais, jantares e acompanhamento em Porto de Galinhas.",
+    "detalhes": "Profissional experiente em eventos corporativos e sociais. Discreta, bem educada e sempre impecável.",
+    "contato": {
+      "telefone": "(81) 99999-9999",
+      "whatsapp": "https://wa.me/5581999999999"
+    },
+    "caracteristicas": {
+      "cabelo": "Moreno",
+      "altura": "1.65m",
+      "disponibilidade": "Eventos, jantares, viagens"
+    }
+  },
+  {
+    "id": "luiza-28anos",
+    "nome": "Luiza",
+    "idade": 28,
+    "foto": "/images/luiza.jpg",
+    "descricao": "Loira carinhosa e sofisticada. Especialista em acompanhamento para viagens e eventos exclusivos.",
+    "detalhes": "Formada em turismo, fala inglês fluente. Ideal para eventos internacionais e viagens de negócios.",
+    "contato": {
+      "telefone": "(81) 98888-8888",
+      "whatsapp": "https://wa.me/5581988888888"
+    },
+    "caracteristicas": {
+      "cabelo": "Loiro",
+      "altura": "1.70m",
+      "disponibilidade": "Viagens, eventos, congressos"
+    }
+  },
+  {
+    "id": "carolina-26anos",
+    "nome": "Carolina",
+    "idade": 26,
+    "foto": "/images/carolina.jpg",
+    "descricao": "Ruiva encantadora e inteligente. Perfeita para jantares românticos e eventos culturais.",
+    "detalhes": "Advogada por formação, apaixonada por arte e cultura. Conversação refinada e presença marcante.",
+    "contato": {
+      "telefone": "(81) 97777-7777",
+      "whatsapp": "https://wa.me/5581977777777"
+    },
+    "caracteristicas": {
+      "cabelo": "Ruivo",
+      "altura": "1.68m",
+      "disponibilidade": "Jantares, eventos culturais, teatros"
+    }
+  }
+]

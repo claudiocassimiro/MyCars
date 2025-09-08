@@ -1,0 +1,53 @@
+[
+  {
+    "id": "ana-25anos",
+    "nome": "Ana",
+    "idade": 25,
+    "foto": "/images/ana.jpg",
+    "descricao": "Morena elegante y simpática. Disponible para eventos sociales, cenas y acompañamiento en Porto de Galinhas.",
+    "detalhes": "Profesional experimentada en eventos corporativos y sociales. Discreta, bien educada y siempre impecable.",
+    "contato": {
+      "telefone": "(81) 99999-9999",
+      "whatsapp": "https://wa.me/5581999999999"
+    },
+    "caracteristicas": {
+      "cabelo": "Morena",
+      "altura": "1.65m",
+      "disponibilidade": "Eventos, cenas, viajes"
+    }
+  },
+  {
+    "id": "luiza-28anos",
+    "nome": "Luiza",
+    "idade": 28,
+    "foto": "/images/luiza.jpg",
+    "descricao": "Rubia cariñosa y sofisticada. Especialista en acompañamiento para viajes y eventos exclusivos.",
+    "detalhes": "Graduada en turismo, habla inglés con fluidez. Ideal para eventos internacionales y viajes de negocios.",
+    "contato": {
+      "telefone": "(81) 98888-8888",
+      "whatsapp": "https://wa.me/5581988888888"
+    },
+    "caracteristicas": {
+      "cabelo": "Rubia",
+      "altura": "1.70m",
+      "disponibilidade": "Viajes, eventos, congresos"
+    }
+  },
+  {
+    "id": "carolina-26anos",
+    "nome": "Carolina",
+    "idade": 26,
+    "foto": "/images/carolina.jpg",
+    "descricao": "Pelirroja encantadora e inteligente. Perfecta para cenas románticas y eventos culturales.",
+    "detalhes": "Abogada de formación, apasionada por el arte y la cultura. Conversación refinada y presencia notable.",
+    "contato": {
+      "telefone": "(81) 97777-7777",
+      "whatsapp": "https://wa.me/5581977777777"
+    },
+    "caracteristicas": {
+      "cabelo": "Pelirroja",
+      "altura": "1.68m",
+      "disponibilidade": "Cenas, eventos culturales, teatros"
+    }
+  }
+]
