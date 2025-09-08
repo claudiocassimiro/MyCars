@@ -193,3 +193,7 @@ export default async function RootLayout({
     </html>
   );
 }
+
+export const metadata = {
+      generator: 'v0.app'
+    };
