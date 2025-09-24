@@ -1,30 +1,111 @@
-# Acompanhantes site admin
+# AutoVenda - Sistema de Catálogo de Veículos
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
+Sistema completo de catálogo de veículos seminovos com interface administrativa para gerenciamento de produtos.
 
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/claudiocassimiros-projects/v0-acompanhantes-site-admin)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/projects/cXMOJCf9uhk)
+## 🚗 Funcionalidades
 
-## Overview
+### Para Visitantes
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+- **Catálogo de Veículos**: Visualização de todos os veículos disponíveis
+- **Filtros Avançados**: Busca por marca, modelo, ano, preço, cor, combustível, câmbio
+- **Detalhes Completos**: Página individual para cada veículo com galeria de fotos
+- **Contato Direto**: Botões para WhatsApp e telefone
+- **Design Responsivo**: Interface otimizada para desktop e mobile
 
-## Deployment
+### Para Administradores
 
-Your project is live at:
+- **CRUD Completo**: Adicionar, editar e excluir veículos
+- **Interface Intuitiva**: Painel administrativo fácil de usar
+- **Persistência Local**: Dados salvos no localStorage do navegador
+- **Validação de Dados**: Campos obrigatórios e validação de tipos
 
-**[https://vercel.com/claudiocassimiros-projects/v0-acompanhantes-site-admin](https://vercel.com/claudiocassimiros-projects/v0-acompanhantes-site-admin)**
+## 🛠️ Tecnologias Utilizadas
 
-## Build your app
+- **Next.js 14** - Framework React
+- **TypeScript** - Tipagem estática
+- **Tailwind CSS** - Estilização
+- **Radix UI** - Componentes acessíveis
+- **Lucide React** - Ícones
+- **LocalStorage** - Persistência de dados
 
-Continue building your app on:
+## 📋 Estrutura do Projeto
 
-**[https://v0.app/chat/projects/cXMOJCf9uhk](https://v0.app/chat/projects/cXMOJCf9uhk)**
+```
+├── app/
+│   ├── admin/                 # Interface administrativa
+│   ├── catalogo/             # Página do catálogo
+│   ├── veiculo/[id]/         # Página de detalhes do veículo
+│   └── page.tsx              # Página inicial
+├── components/
+│   ├── veiculo-card.tsx      # Card do veículo
+│   ├── header.tsx            # Cabeçalho
+│   └── footer.tsx            # Rodapé
+├── data/
+│   └── veiculos.json         # Dados iniciais dos veículos
+└── lib/
+    └── data.ts               # Funções de manipulação de dados
+```
 
-## How It Works
+## 🚀 Como Executar
 
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+1. **Instalar dependências:**
+
+```bash
+npm install
+```
+
+2. **Executar em modo desenvolvimento:**
+
+```bash
+npm run dev
+```
+
+3. **Abrir no navegador:**
+
+```
+http://localhost:3000
+```
+
+## 📱 Páginas Disponíveis
+
+- **/** - Página inicial com veículos em destaque
+- **/catalogo** - Catálogo completo com filtros
+- **/veiculo/[id]** - Detalhes de um veículo específico
+- **/admin** - Painel administrativo (CRUD de veículos)
+
+## 🎨 Tema e Design
+
+- **Cores**: Azul, prata e branco
+- **Tipografia**: Geist Sans
+- **Layout**: Responsivo e moderno
+- **Acessibilidade**: Componentes Radix UI com foco em acessibilidade
+
+## 📊 Dados dos Veículos
+
+Cada veículo contém:
+
+- Informações básicas (marca, modelo, ano, preço)
+- Características técnicas (motor, potência, consumo)
+- Detalhes físicos (cor, portas, quilometragem)
+- Opcionais e equipamentos
+- Informações de contato
+- Status (disponível, vendido, reservado)
+- Tabela FIPE
+- Chave reserva (sim/não)
+
+## 🔧 Funcionalidades Administrativas
+
+- **Adicionar Veículo**: Formulário completo com validação
+- **Editar Veículo**: Modificar informações existentes
+- **Excluir Veículo**: Remoção com confirmação
+- **Filtros**: Busca e filtros na lista de veículos
+- **Persistência**: Dados salvos automaticamente no localStorage
+
+## 📝 Próximas Melhorias
+
+- [ ] Upload de imagens
+- [ ] Integração com banco de dados
+- [ ] Sistema de autenticação
+- [ ] Relatórios de vendas
+- [ ] Notificações por email
+- [ ] API REST para integração

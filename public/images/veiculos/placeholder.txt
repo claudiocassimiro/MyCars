@@ -1,0 +1,20 @@
+# Diretório de Imagens dos Veículos
+
+Este diretório deve conter as imagens dos veículos referenciadas no arquivo veiculos.json.
+
+## Estrutura esperada:
+- civic-2020-azul-1.jpg
+- civic-2020-azul-2.jpg
+- civic-2020-azul-3.jpg
+- corolla-2019-prata-1.jpg
+- corolla-2019-prata-2.jpg
+- corolla-2019-prata-3.jpg
+- hb20-2021-branco-1.jpg
+- hb20-2021-branco-2.jpg
+- hb20-2021-branco-3.jpg
+- onix-2024-vermelho-1.jpg
+- onix-2024-vermelho-2.jpg
+- onix-2024-vermelho-3.jpg
+
+## Alternativa:
+Você pode usar imagens placeholder ou substituir as URLs no arquivo veiculos.json por URLs de imagens reais.

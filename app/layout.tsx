@@ -8,24 +8,24 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "MyGirls - Acompanhantes Exclusivas em Porto de Galinhas",
-    template: "%s | MyGirls",
+    default: "AutoVenda - Veículos Seminovos de Qualidade",
+    template: "%s | AutoVenda",
   },
   description:
-    "Acompanhantes elegantes e sofisticadas para eventos, jantares e ocasiões especiais em Porto de Galinhas, PE. Discrição e qualidade garantidas.",
+    "Encontre o veículo ideal para você. Carros seminovos com garantia, documentação em dia e preços justos. Financiamento facilitado.",
   keywords: [
-    "acompanhantes Porto de Galinhas",
-    "eventos sociais Pernambuco",
-    "jantares executivos",
-    "acompanhamento exclusivo",
-    "Porto de Galinhas PE",
-    "eventos corporativos",
-    "acompanhantes elegantes",
-    "serviços discretos",
+    "carros seminovos",
+    "veículos usados",
+    "compra de carro",
+    "financiamento automóvel",
+    "concessionária",
+    "veículos garantia",
+    "transferência veículo",
+    "carros Recife",
   ],
-  authors: [{ name: "MyGirls", url: "https://mygirls.com.br" }],
-  creator: "MyGirls",
-  publisher: "MyGirls",
+  authors: [{ name: "AutoVenda", url: "https://autovenda.com.br" }],
+  creator: "AutoVenda",
+  publisher: "AutoVenda",
   generator: "v0.app",
   formatDetection: {
     email: false,
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     telephone: false,
   },
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_BASE_URL || "https://mygirls.com.br"
+    process.env.NEXT_PUBLIC_BASE_URL || "https://autovenda.com.br"
   ),
   alternates: {
     canonical: "/",
@@ -42,24 +42,24 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     url: "/",
-    title: "MyGirls - Acompanhantes Exclusivas em Porto de Galinhas",
+    title: "AutoVenda - Veículos Seminovos de Qualidade",
     description:
-      "Acompanhantes elegantes e sofisticadas para eventos, jantares e ocasiões especiais em Porto de Galinhas, PE. Discrição e qualidade garantidas.",
-    siteName: "MyGirls",
+      "Encontre o veículo ideal para você. Carros seminovos com garantia, documentação em dia e preços justos. Financiamento facilitado.",
+    siteName: "AutoVenda",
     images: [
       {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "MyGirls - Acompanhantes em Porto de Galinhas",
+        alt: "AutoVenda - Veículos Seminovos",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "MyGirls - Acompanhantes Exclusivas em Porto de Galinhas",
+    title: "AutoVenda - Veículos Seminovos de Qualidade",
     description:
-      "Acompanhantes elegantes e sofisticadas para eventos, jantares e ocasiões especiais em Porto de Galinhas, PE. Discrição e qualidade garantidas.",
+      "Encontre o veículo ideal para você. Carros seminovos com garantia, documentação em dia e preços justos. Financiamento facilitado.",
     images: ["/og-image.jpg"],
   },
   robots: {
@@ -84,24 +84,24 @@ export const viewport: Viewport = {
   maximumScale: 5,
   userScalable: true,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#dc2626" },
-    { media: "(prefers-color-scheme: dark)", color: "#dc2626" },
+    { media: "(prefers-color-scheme: light)", color: "#2563eb" },
+    { media: "(prefers-color-scheme: dark)", color: "#2563eb" },
   ],
 };
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  name: "MyGirls",
+  "@type": "AutoDealer",
+  name: "AutoVenda",
   description:
-    "Acompanhantes elegantes para eventos sociais em Porto de Galinhas",
-  url: process.env.NEXT_PUBLIC_BASE_URL || "https://mygirls.com.br",
+    "Concessionária de veículos seminovos com garantia e documentação em dia",
+  url: process.env.NEXT_PUBLIC_BASE_URL || "https://autovenda.com.br",
   logo: `${
-    process.env.NEXT_PUBLIC_BASE_URL || "https://mygirls.com.br"
+    process.env.NEXT_PUBLIC_BASE_URL || "https://autovenda.com.br"
   }/logo.png`,
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Porto de Galinhas",
+    addressLocality: "Recife",
     addressRegion: "PE",
     addressCountry: "BR",
   },
