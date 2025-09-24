@@ -1,17 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
-import { readFileSync, writeFileSync } from "fs";
-import { join } from "path";
+import {
+  getVeiculos,
+  getVeiculoById,
+  createVeiculo,
+  updateVeiculo,
+  deleteVeiculo,
+} from "@/lib/veiculos-memory";
 import type { Veiculo } from "@/lib/data";
-
-const VEICULOS_FILE = join(process.cwd(), "data", "veiculos.json");
 
 // GET - Listar todos os veículos
 export async function GET() {
   try {
-    const data = readFileSync(VEICULOS_FILE, "utf8");
-    const veiculos = JSON.parse(data);
+    const veiculos = await getVeiculos();
     return NextResponse.json(veiculos);
   } catch (error) {
+    console.error("Erro ao obter veículos:", error);
     return NextResponse.json(
       { error: "Erro ao ler veículos" },
       { status: 500 }
@@ -22,27 +25,11 @@ export async function GET() {
 // POST - Criar novo veículo
 export async function POST(request: NextRequest) {
   try {
-    const veiculo: Veiculo = await request.json();
-
-    // Ler veículos existentes
-    const data = readFileSync(VEICULOS_FILE, "utf8");
-    const veiculos = JSON.parse(data);
-
-    // Gerar ID único
-    const id = `${veiculo.marca.toLowerCase()}-${veiculo.modelo.toLowerCase()}-${
-      veiculo.ano
-    }-${Date.now()}`;
-    veiculo.id = id;
-    veiculo.dataCadastro = new Date().toISOString().split("T")[0];
-
-    // Adicionar novo veículo
-    veiculos.push(veiculo);
-
-    // Salvar no arquivo
-    writeFileSync(VEICULOS_FILE, JSON.stringify(veiculos, null, 2));
-
+    const veiculoData = await request.json();
+    const veiculo = await createVeiculo(veiculoData);
     return NextResponse.json({ success: true, veiculo });
   } catch (error) {
+    console.error("Erro ao criar veículo:", error);
     return NextResponse.json(
       { error: "Erro ao criar veículo" },
       { status: 500 }
@@ -56,26 +43,18 @@ export async function PUT(request: NextRequest) {
     const { id, ...veiculoData }: { id: string } & Partial<Veiculo> =
       await request.json();
 
-    // Ler veículos existentes
-    const data = readFileSync(VEICULOS_FILE, "utf8");
-    const veiculos = JSON.parse(data);
+    const veiculo = await updateVeiculo(id, veiculoData);
 
-    // Encontrar e atualizar veículo
-    const index = veiculos.findIndex((v: Veiculo) => v.id === id);
-    if (index === -1) {
+    if (!veiculo) {
       return NextResponse.json(
         { error: "Veículo não encontrado" },
         { status: 404 }
       );
     }
 
-    veiculos[index] = { ...veiculos[index], ...veiculoData };
-
-    // Salvar no arquivo
-    writeFileSync(VEICULOS_FILE, JSON.stringify(veiculos, null, 2));
-
-    return NextResponse.json({ success: true, veiculo: veiculos[index] });
+    return NextResponse.json({ success: true, veiculo });
   } catch (error) {
+    console.error("Erro ao atualizar veículo:", error);
     return NextResponse.json(
       { error: "Erro ao atualizar veículo" },
       { status: 500 }
@@ -96,25 +75,18 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
-    // Ler veículos existentes
-    const data = readFileSync(VEICULOS_FILE, "utf8");
-    const veiculos = JSON.parse(data);
+    const success = await deleteVeiculo(id);
 
-    // Filtrar veículo removido
-    const veiculosAtualizados = veiculos.filter((v: Veiculo) => v.id !== id);
-
-    if (veiculosAtualizados.length === veiculos.length) {
+    if (!success) {
       return NextResponse.json(
         { error: "Veículo não encontrado" },
         { status: 404 }
       );
     }
 
-    // Salvar no arquivo
-    writeFileSync(VEICULOS_FILE, JSON.stringify(veiculosAtualizados, null, 2));
-
     return NextResponse.json({ success: true });
   } catch (error) {
+    console.error("Erro ao deletar veículo:", error);
     return NextResponse.json(
       { error: "Erro ao remover veículo" },
       { status: 500 }
